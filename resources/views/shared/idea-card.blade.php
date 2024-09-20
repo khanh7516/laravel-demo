@@ -15,8 +15,10 @@
                     @method('delete')
                     <button class="btn btn-danger btn-sm">Delete</button>
                 </form>
+                <a href="{{route('idea.show', $idea->id)}}">View</a>
             </div>
         </div>
+        
     </div>
 
     <div class="card-body">
