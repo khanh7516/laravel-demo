@@ -13,7 +13,7 @@ class IdeaController extends Controller
         $idea->likes = 0;
         $idea->save();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('success', 'Idea created successfully!');
     }
 
 }
