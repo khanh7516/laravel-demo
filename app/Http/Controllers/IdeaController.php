@@ -34,4 +34,26 @@ class IdeaController extends Controller
         return view('ideas.show', ['idea' => $idea]);
     }
 
+    public function edit($id) {
+        $idea = Idea::where('id', $id)->firstOrFail();
+        $editing = true;
+
+        return view('ideas.show', ['idea' => $idea, 'editing' => $editing]);
+    }
+
+
+    public function update($id) {
+        $idea = Idea::where('id', $id)->firstOrFail();
+
+        request()->validate(
+            [
+                'content' => 'required|min:3|max:240'
+            ]
+        );
+
+        $idea->content = request()->get('content', '');
+        $idea->save();
+
+        return redirect()->route('idea.show', $idea->id)->with('success', 'idea updated success!');
+    }
 }
